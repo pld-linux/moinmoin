@@ -5,7 +5,7 @@ Summary:	Wiki Engine
 Summary(pl):	Silnik Wiki
 Name:		moinmoin
 Version:	1.3.1
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/moin/%{module}-%{version}.tar.gz
