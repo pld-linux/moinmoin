@@ -5,7 +5,7 @@ Summary:	Wiki Engine
 Summary(pl):	Silnik Wiki
 Name:		moinmoin
 Version:	1.3.1
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/moin/%{module}-%{version}.tar.gz
@@ -36,7 +36,7 @@ python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-python setup.py install --optimize=2 --root=$RPM_BUILD_ROOT
+python setup.py install --root=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT%{py_sitescriptdir} -type f -name "*.py" | xargs rm
 
 %clean
