@@ -13,7 +13,6 @@ Source0:	http://dl.sourceforge.net/moin/%{module}-%{version}.tar.gz
 URL:		http://moinmoin.wikiwikiweb.de/
 BuildRequires:	python-devel
 BuildRequires:	python-modules
-BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
