@@ -2,6 +2,7 @@
 %define module moin
 
 Summary:	Wiki Engine
+Summary(pl):	Silnik Wiki
 Name:		moinmoin
 Version:	1.2.3
 Release:	1
@@ -17,8 +18,14 @@ BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-MoinMoin is a nice and easy WikiEngine with advanced features - said in
-a few words, it is about collaboration on easily editable web pages.
+MoinMoin is a nice and easy WikiEngine with advanced features - said
+in a few words, it is about collaboration on easily editable web
+pages.
+
+%description -l pl
+MoinMoin to przyjemny i ³atwy silnik Wiki z zaawansowanymi
+mo¿liwo¶ciami - mówi±c w kilku s³owach dotyczy wspó³pracy przy ³atwo
+modyfikowalnych stronach WWW.
 
 %prep
 %setup -q -n %{module}-%{version}
