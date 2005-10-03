@@ -4,12 +4,12 @@
 Summary:	Wiki Engine
 Summary(pl):	Silnik Wiki
 Name:		moinmoin
-Version:	1.3.4
+Version:	1.3.5
 Release:	1
 License:	GPL
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/moin/%{module}-%{version}.tar.gz
-# Source0-md5:	9d72e2cc6382d6dc8408bf0f9ccb1398
+# Source0-md5:	7194abf16cd6fe24c046013ce3a7c13d
 URL:		http://moinmoin.wikiwikiweb.de/
 BuildRequires:	python
 BuildRequires:	python-devel
@@ -37,13 +37,14 @@ python setup.py build
 %install
 rm -rf $RPM_BUILD_ROOT
 python setup.py install --optimize=2 --root=$RPM_BUILD_ROOT
+rm -rf docs/licenses
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README INSTALL.html UPDATE.html
+%doc ChangeLog docs/*
 %attr(755,root,root) %{_bindir}/*
 %{py_sitescriptdir}/MoinMoin
 %{_datadir}/moin
