@@ -1,6 +1,4 @@
-
 %define	module	moin
-
 Summary:	Wiki Engine
 Summary(pl):	Silnik Wiki
 Name:		moinmoin
@@ -13,7 +11,8 @@ Source0:	http://dl.sourceforge.net/moin/%{module}-%{version}.tar.gz
 URL:		http://moinmoin.wikiwikiweb.de/
 BuildRequires:	python
 BuildRequires:	python-devel
-BuildRequires:	python-modules
+BuildRequires:	python-modules > 1:2.3
+BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python-modules
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -30,6 +29,7 @@ modyfikowalnych stronach WWW.
 
 %prep
 %setup -q -n %{module}-%{version}
+rm -rf docs/licenses
 
 %build
 python setup.py build
@@ -37,7 +37,6 @@ python setup.py build
 %install
 rm -rf $RPM_BUILD_ROOT
 python setup.py install --optimize=2 --root=$RPM_BUILD_ROOT
-rm -rf docs/licenses
 
 %clean
 rm -rf $RPM_BUILD_ROOT
