@@ -1,0 +1,80 @@
+diff -ur moin-1.5.0beta3.orig/MoinMoin/multiconfig.py moin-1.5.0beta3/MoinMoin/multiconfig.py
+--- moin-1.5.0beta3.orig/MoinMoin/multiconfig.py	2005-11-23 20:54:42.309651250 +0100
++++ moin-1.5.0beta3/MoinMoin/multiconfig.py	2005-11-23 21:27:42.741420500 +0100
+@@ -202,6 +202,7 @@
+     date_fmt = '%Y-%m-%d'
+     datetime_fmt = '%Y-%m-%d %H:%M:%S'
+     default_markup = 'wiki'
++    online_registration = True
+     docbook_html_dir = r"/usr/share/xml/docbook/stylesheet/nwalsh/html/" # correct for debian sarge
+     editor_default = 'text' # which editor is called when nothing is specified
+     editor_ui = 'freechoice' # which editor links are shown on user interface
+diff -ur moin-1.5.0beta3.orig/MoinMoin/userform.py moin-1.5.0beta3/MoinMoin/userform.py
+--- moin-1.5.0beta3.orig/MoinMoin/userform.py	2005-11-23 20:54:42.381655750 +0100
++++ moin-1.5.0beta3/MoinMoin/userform.py	2005-11-23 21:27:48.665790750 +0100
+@@ -138,9 +138,12 @@
+             self.request.setCookie()           
+         
+         
+-        elif (form.has_key('create') or
+-              form.has_key('create_only') or
+-              form.has_key('create_and_mail')):
++        elif (self.request.cfg.online_registration and
++              (form.has_key('create') or
++               form.has_key('create_only') or
++               form.has_key('create_and_mail')
++              )
++             ):
+             if self.request.request_method != 'POST':
+                 return _("Use UserPreferences to change your settings or create an account.")
+             # Create user profile
+@@ -221,6 +224,9 @@
+             return result
+ 
+         else: 
++            if not self.request.cfg.online_registration:
++              return _("Online registration of new users is disabled on this site.")
++            
+             if self.request.request_method != 'POST':
+                 return _("Use UserPreferences to change your settings or create an account.")
+             # Save user profile
+@@ -543,12 +549,14 @@
+                             disabled=key in self.cfg.user_checkbox_disable and True or None),
+                         ' ', label(_), html.BR(),
+                     ])
+-            self.make_row(_('General options'), bool_options, valign="top")
++            if bool_options:
++                self.make_row(_('General options'), bool_options, valign="top")
+ 
+-            self.make_row(_('Quick links'), [
+-                html.TEXTAREA(name="quicklinks", rows="6", cols="50")
+-                    .append('\n'.join(self.request.user.getQuickLinks())),
+-            ], valign="top")
++            if 'quick_links' not in self.cfg.user_form_remove:
++                self.make_row(_('Quick links'), [
++                    html.TEXTAREA(name="quicklinks", rows="6", cols="50")
++                        .append('\n'.join(self.request.user.getQuickLinks())),
++                ], valign="top")
+ 
+             # subscribed pages
+             if self.cfg.mail_enabled:
+@@ -579,10 +587,17 @@
+                 # IMPORTANT: login should be first to be the default
+                 # button when a user hits ENTER.
+                 ('login', _('Login')),
+-                ("create", _('Create Profile')),
+             ]
++            if self.cfg.online_registration:
++                buttons.append (
++                    ("create", _('Create Profile')),
++                )
++            
++                allowed_fields = ('name', 'password', 'password2', 'email')
++            else:
++                allowed_fields = ('name', 'password')
+             for key, label, type, length, textafter in self.cfg.user_form_fields:
+-                if key in ('name', 'password', 'password2', 'email'):
++                if key in allowed_fields:
+                     self.make_row(_(label),
+                               [ html.INPUT(type=type, size=length, name=key,
+                                            value=''),
