@@ -1,17 +1,18 @@
 
 %define	module	moin
-%define _rc	beta3
+%define _rc	beta4
 
 Summary:	Wiki Engine
 Summary(pl):	Silnik Wiki
 Name:		moinmoin
 Version:	1.5.0
-Release:	0.%{_rc}.2
+Release:	0.%{_rc}.1
 License:	GPL
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/moin/%{module}-%{version}%{_rc}.tar.gz
-# Source0-md5:	980bc9f01f4a8437899fd347ad6ad20d
+# Source0-md5:	ce48757dff4bcc273fa43403f52454cb
 Patch0:		%{name}-userform_customization.patch
+Patch1:		%{name}-quickhelp.patch
 URL:		http://moinmoin.wikiwikiweb.de/
 BuildRequires:	python
 BuildRequires:	python-devel
@@ -33,6 +34,7 @@ modyfikowalnych stronach WWW.
 %prep
 %setup -q -n %{module}-%{version}%{_rc}
 %patch0 -p1
+%patch1 -p1
 
 %build
 python setup.py build
