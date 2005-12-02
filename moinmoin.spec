@@ -1,3 +1,5 @@
+# TODO
+# - for lighttpd: http://permalink.gmane.org/gmane.comp.web.lighttpd/3140
 %define	module	moin
 Summary:	Wiki Engine
 Summary(pl):	Silnik Wiki
