@@ -1,0 +1,109 @@
+--- moin-1.5.3/wiki/server/moin	2006-06-02 22:48:10.541318318 +0300
++++ moin-1.5.0.config/wiki/server/moin	2006-06-03 00:26:57.964270527 +0300
+@@ -10,8 +10,8 @@
+ """
+ 
+ # Add the path to moin.py directory 
+-## import sys
+-## sys.path.insert(0, '/path/to/moin')
++import sys
++sys.path.insert(0, '/usr/share/moin/server')
+ 
+ from MoinMoin.server import daemon
+ from moin import Config, run
+--- moin-1.5.3/wiki/server/moin.cgi	2006-06-02 22:48:10.541318318 +0300
++++ moin-1.5.0.config/wiki/server/moin.cgi	2006-06-03 00:27:04.854425068 +0300
+@@ -12,8 +12,7 @@
+ import sys
+ 
+ # Path of the directory where wikiconfig.py is located.
+-# YOU NEED TO CHANGE THIS TO MATCH YOUR SETUP.
+-sys.path.insert(0, '/path/to/wikiconfig')
++sys.path.insert(0, '/etc/webapps/moinmoin')
+ 
+ # Path to MoinMoin package, needed if you installed with --prefix=PREFIX
+ # or if you did not use setup.py.
+--- moin-1.5.3/wiki/server/moin.fcg	2006-06-02 22:48:10.541318318 +0300
++++ moin-1.5.0.config/wiki/server/moin.fcg	2006-06-03 00:25:09.401835496 +0300
+@@ -12,8 +12,7 @@
+ import sys
+ 
+ # Path of the directory where wikiconfig.py is located.
+-# YOU NEED TO CHANGE THIS TO MATCH YOUR SETUP.
+-sys.path.insert(0, '/path/to/wikiconfig')
++sys.path.insert(0, '/etc/webapps/moinmoin')
+ 
+ # Path to MoinMoin package, needed if you installed with --prefix=PREFIX
+ # or if you did not use setup.py.
+--- moin-1.5.3/wiki/server/moin.py	2006-06-02 22:48:10.541318318 +0300
++++ moin-1.5.0.config/wiki/server/moin.py	2006-06-03 00:25:14.341946305 +0300
+@@ -11,8 +11,7 @@
+ import sys
+ 
+ # Path of the directory where wikiconfig.py is located.
+-# YOU NEED TO CHANGE THIS TO MATCH YOUR SETUP.
+-sys.path.insert(0, '/path/to/wikiconfig')
++sys.path.insert(0, '/etc/webapps/moinmoin')
+ 
+ # Path to MoinMoin package, needed if you installed with --prefix=PREFIX
+ # or if you did not use setup.py.
+--- moin-1.5.3/wiki/server/moinmodpy.py	2006-06-02 22:48:10.551318541 +0300
++++ moin-1.5.0.config/wiki/server/moinmodpy.py	2006-06-03 00:25:23.722156705 +0300
+@@ -32,8 +32,7 @@
+ import sys
+ 
+ # Path of the directory where wikiconfig.py is located.
+-# YOU NEED TO CHANGE THIS TO MATCH YOUR SETUP.
+-sys.path.insert(0, '/path/to/wikiconfig')
++sys.path.insert(0, '/etc/webapps/moinmoin')
+ 
+ # Path to MoinMoin package, needed if you installed with --prefix=PREFIX
+ # or if you did not use setup.py.
+--- moin-1.5.3/wiki/server/mointwisted	2006-06-02 22:48:10.551318541 +0300
++++ moin-1.5.0.config/wiki/server/mointwisted	2006-06-03 00:27:17.954718893 +0300
+@@ -7,8 +7,8 @@
+ """
+ 
+ # Add the path to mointwisted.py directory 
+-## import sys
+-## sys.path.insert(0, '/path/to/mointwisted')
++import sys
++sys.path.insert(0, '/usr/share/moin/server')
+ 
+ import os
+ 
+@@ -24,4 +24,4 @@
+ 
+ 
+ script = TwistedScript(Config.name, None)
+-script.run()
+\ No newline at end of file
++script.run()
+--- moin-1.5.3/wiki/server/mointwisted.py	2006-06-02 22:48:10.551318541 +0300
++++ moin-1.5.0.config/wiki/server/mointwisted.py	2006-06-03 00:25:49.782741246 +0300
+@@ -13,8 +13,7 @@
+ import sys
+ 
+ # Path of the directory where wikiconfig.py is located.
+-# YOU NEED TO CHANGE THIS TO MATCH YOUR SETUP.
+-sys.path.insert(0, '/path/to/wikiconfig')
++sys.path.insert(0, '/etc/webapps/moinmoin')
+ 
+ # Path to MoinMoin package, needed if you installed with --prefix=PREFIX
+ # or if you did not use setup.py
+--- moin-1.5.3/wiki/htdocs/index.html~	2005-09-22 19:22:10.000000000 +0300
++++ moin-1.5.3/wiki/htdocs/index.html	2006-06-03 00:52:26.798560688 +0300
+@@ -1,11 +1,11 @@
+ <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+ <html>
+   <head>
+-    <meta http-equiv="refresh" content="0;URL=moin.cgi/">
++    <meta http-equiv="refresh" content="0;URL=./">
+   </head>
+ 
+   <body bgcolor="#FFFFFF" text="#000000">
+-    Click <a href="moin.cgi">here</a> to get to the FrontPage.
++    Click <a href="./">here</a> to get to the FrontPage.
+   </body>
+ </html>
+ 
