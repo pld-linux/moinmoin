@@ -107,3 +107,22 @@
    </body>
  </html>
  
+--- moin-1.5.3/wiki/config/wikiconfig.py	2006-02-04 23:20:20.000000000 +0200
++++ moin-1.5.3/wiki/config/wikiconfig.py	2006-06-03 12:24:58.468604858 +0300
+@@ -65,14 +65,14 @@
+ 
+     # Where your mutable wiki pages are. You want to make regular
+     # backups of this directory.
+-    data_dir = './data/'
++    data_dir = '/var/lib/moin/data/'
+ 
+     # Where read-only system and help page are. You might want to share
+     # this directory between several wikis. When you update MoinMoin,
+     # you can safely replace the underlay directory with a new one. This
+     # directory is part of MoinMoin distribution, you don't have to
+     # backup it.
+-    data_underlay_dir = './underlay/'
++    data_underlay_dir = '/var/lib/moin/underlay/'
+ 
+     # This must be '/wiki' for twisted and standalone. For CGI, it should
+     # match your Apache Alias setting.
