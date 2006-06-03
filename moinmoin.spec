@@ -6,7 +6,7 @@ Summary:	Wiki Engine
 Summary(pl):	Silnik Wiki
 Name:		moinmoin
 Version:	1.5.3
-Release:	0.5
+Release:	0.7
 License:	GPL
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/moin/%{module}-%{version}.tar.gz
@@ -80,6 +80,10 @@ mv $RPM_BUILD_ROOT{%{_datadir}/moin/data,/var/lib/moin/data}
 # it needs rw on underlay, so move it also to /var
 mv $RPM_BUILD_ROOT{%{_datadir}/moin/underlay,/var/lib/moin/underlay}
 
+# create dirs / files it creates by on it's own
+install -d $RPM_BUILD_ROOT/var/lib/moin/data/cache/{i18n,surgeprotect,wikidicts}/__lock__
+touch $RPM_BUILD_ROOT/var/lib/moin/data/{event-log,error.log}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -111,7 +115,16 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_datadir}/moin/server/*
 
 %dir /var/lib/moin
+%dir /var/lib/moin/underlay
 %defattr(660,root,http,770)
-/var/lib/moin/underlay
+/var/lib/moin/underlay/pages
 %dir /var/lib/moin/data
-%config(missingok,noreplace) %verify(not md5 mtime size) /var/lib/moin/data/*
+/var/lib/moin/data/plugin
+%config(missingok,noreplace) %verify(not md5 mtime size) /var/lib/moin/data/pages
+%config(missingok,noreplace) %verify(not md5 mtime size) /var/lib/moin/data/user
+%config(missingok,noreplace) %verify(not md5 mtime size) /var/lib/moin/data/dict
+%config(missingok,noreplace) %verify(not md5 mtime size) /var/lib/moin/data/cache
+%ghost /var/lib/moin/data/edit-log
+%ghost /var/lib/moin/data/event-log
+%ghost /var/lib/moin/data/error.log
+/var/lib/moin/data/intermap.txt
