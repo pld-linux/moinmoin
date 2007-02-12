@@ -3,7 +3,7 @@
 %define _rc	beta4
 
 Summary:	Wiki Engine
-Summary(pl):	Silnik Wiki
+Summary(pl.UTF-8):   Silnik Wiki
 Name:		moinmoin
 Version:	1.5.0
 Release:	0.%{_rc}.1
@@ -26,9 +26,9 @@ MoinMoin is a nice and easy WikiEngine with advanced features - said
 in a few words, it is about collaboration on easily editable web
 pages.
 
-%description -l pl
-MoinMoin to przyjemny i �atwy silnik Wiki z zaawansowanymi
-mo�liwo�ciami - m�wi�c w kilku s�owach dotyczy wsp�pracy przy �atwo
+%description -l pl.UTF-8
+MoinMoin to przyjemny i łatwy silnik Wiki z zaawansowanymi
+możliwościami - mówiąc w kilku słowach dotyczy współpracy przy łatwo
 modyfikowalnych stronach WWW.
 
 %prep
