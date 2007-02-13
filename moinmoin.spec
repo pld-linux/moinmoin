@@ -3,7 +3,7 @@
 # - http://moinmoin.wikiwikiweb.de/HelpOnInstalling/FastCgi
 %define	module	moin
 Summary:	Wiki Engine
-Summary(pl.UTF-8):   Silnik Wiki
+Summary(pl.UTF-8):	Silnik Wiki
 Name:		moinmoin
 Version:	1.5.4
 Release:	0.8
