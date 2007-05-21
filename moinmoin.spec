@@ -5,12 +5,12 @@
 Summary:	Wiki Engine
 Summary(pl.UTF-8):	Silnik Wiki
 Name:		moinmoin
-Version:	1.5.7
+Version:	1.5.8
 Release:	0.1
 License:	GPL
 Group:		Applications/WWW
 Source0:	http://dl.sourceforge.net/moin/%{module}-%{version}.tar.gz
-# Source0-md5:	b304f1c2054c7f3bf0dc48c141b28b33
+# Source0-md5:	79625eaeb65907bfaf8b3036d81c82a5
 Source1:	%{name}-apache.conf
 Patch0:		%{name}-config.patch
 URL:		http://moinmoin.wikiwikiweb.de/
@@ -102,7 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog docs/* config
+%doc docs/* config
 %dir %attr(750,root,http) %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
