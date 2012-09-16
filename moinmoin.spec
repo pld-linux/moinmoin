@@ -1,19 +1,19 @@
 # TODO
 # - for lighttpd: http://permalink.gmane.org/gmane.comp.web.lighttpd/3140
 # - http://moinmoin.wikiwikiweb.de/HelpOnInstalling/FastCgi
-%define	module	moin
+%define				module	moin
 Summary:	Wiki Engine
 Summary(pl.UTF-8):	Silnik Wiki
 Name:		moinmoin
-Version:	1.5.8
+Version:	1.5.9
 Release:	1
 License:	GPL
 Group:		Applications/WWW
-Source0:	http://dl.sourceforge.net/moin/%{module}-%{version}.tar.gz
-# Source0-md5:	79625eaeb65907bfaf8b3036d81c82a5
+Source0:	http://static.moinmo.in/files/%{module}-%{version}.tar.gz
+# Source0-md5:	03025422c5addcbe9ccce3df2dde470c
 Source1:	%{name}-apache.conf
 Patch0:		%{name}-config.patch
-URL:		http://moinmoin.wikiwikiweb.de/
+URL:		http://www.moinmo.in/
 BuildRequires:	python
 BuildRequires:	python-devel
 BuildRequires:	python-modules > 1:2.3
