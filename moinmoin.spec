@@ -6,12 +6,13 @@ Summary:	Wiki Engine
 Summary(pl.UTF-8):	Silnik Wiki
 Name:		moinmoin
 Version:	1.5.9
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/WWW
 Source0:	http://static.moinmo.in/files/%{module}-%{version}.tar.gz
 # Source0-md5:	03025422c5addcbe9ccce3df2dde470c
 Source1:	%{name}-apache.conf
+Source2:	%{name}-httpd.conf
 Patch0:		%{name}-config.patch
 URL:		http://www.moinmo.in/
 BuildRequires:	python
@@ -22,6 +23,7 @@ BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	pydoc
 Requires:	webapps
 %pyrequires_eq	python-modules
+Conflicts:	apache-base < 2.4.0-1
 Conflicts:	docutils < 0.4.0
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -67,7 +69,7 @@ python setup.py build
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},/var/{cache,lib}/moin}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
 python setup.py install \
 	--optimize=2 \
@@ -94,10 +96,10 @@ rm -rf $RPM_BUILD_ROOT
 %triggerun -- apache1 < 1.3.37-3, apache1-base
 %webapp_unregister apache %{_webapp}
 
-%triggerin -- apache < 2.2.0, apache-base
+%triggerin -- apache-base
 %webapp_register httpd %{_webapp}
 
-%triggerun -- apache < 2.2.0, apache-base
+%triggerun -- apache-base
 %webapp_unregister httpd %{_webapp}
 
 %files
